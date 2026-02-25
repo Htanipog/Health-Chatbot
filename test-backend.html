@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Connection Test</title>
+    <style>
+        body { font-family: monospace; margin: 20px; background: #1a1a1a; color: #fff; }
+        .container { max-width: 800px; margin: 0 auto; }
+        textarea { width: 100%; height: 100px; background: #2a2a2a; color: #0f0; border: 1px solid #0f0; padding: 10px; font-family: monospace; }
+        button { background: #0f0; color: #000; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .response { background: #2a2a2a; border: 1px solid #0f0; margin-top: 20px; padding: 15px; min-height: 50px; max-height: 400px; overflow-y: auto; }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+        h1, h2 { color: #0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✓ Backend Connection Test</h1>
+        <p><strong>Backend URL:</strong> <code>https://memory-designation-bug-pine.trycloudflare.com/chat</code></p>
+        
+        <h2>Send Test Message</h2>
+        <textarea id="message" placeholder="Enter test message...">Hello, I have fever and headache</textarea>
+        <br>
+        <button onclick="testBackend()">Send to Backend</button>
+        
+        <h2>Response:</h2>
+        <div class="response" id="response">Waiting for response...</div>
+    </div>
+
+    <script>
+        async function testBackend() {
+            const message = document.getElementById('message').value;
+            if (!message.trim()) {
+                alert('Please enter a message');
+                return;
+            }
+
+            const responseDiv = document.getElementById('response');
+            responseDiv.innerHTML = '<span class="success">⏳ Sending to: https://memory-designation-bug-pine.trycloudflare.com/chat</span><br><br>Request:<br><code>' + JSON.stringify({message}, null, 2) + '</code><br><br>Waiting...';
+            
+            try {
+                const response = await fetch('https://memory-designation-bug-pine.trycloudflare.com/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                console.log('Status:', response.status);
+                const data = await response.json();
+                
+                responseDiv.innerHTML = `<span class="success">✓ Success (HTTP ${response.status})</span><br><br><strong>Response:</strong><br><code>${JSON.stringify(data, null, 2)}</code>`;
+            } catch (error) {
+                responseDiv.innerHTML = `<span class="error">✗ Error: ${error.message}</span><br><br><strong>Details:</strong><br><code>${error.stack}</code><br><br><strong>Troubleshooting:</strong><br>1. Ensure backend server is running<br>2. Check URL is correct: https://memory-designation-bug-pine.trycloudflare.com/chat<br>3. Check browser console (F12) for CORS errors`;
+            }
+        }
+    </script>
+</body>
+</html>

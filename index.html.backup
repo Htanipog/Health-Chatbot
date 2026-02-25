@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Assistant - HealthTech SaaS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #14b8a6; --primary-dark: #0d9488; --secondary: #3b82f6; --bg-dark: #0a0e27; --bg-light: #1a1f3a; --card-bg: rgba(255, 255, 255, 0.08); --text: #e8edf5; --text-dim: #8b9ec2; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; }
+        html { font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, var(--bg-dark), var(--bg-light), #0d0a1a); color: var(--text); min-height: 100vh; overflow: hidden; }
+        input, select, textarea { font-family: inherit; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(20, 184, 166, 0.3); border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>AI Health Assistant — Smart. Safe. Preventive Healthcare.</title>
+    <meta name="description"
+        content="AI-powered health assistant: symptom analysis, vaccine guidance, medical information." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #0a1628;
+            --bg2: #0d1f3c;
+            --bgt: #062a2e;
+            --g0: rgba(255, 255, 255, 0.04);
+            --g1: rgba(255, 255, 255, 0.07);
+            --g2: rgba(255, 255, 255, 0.11);
+            --b0: rgba(255, 255, 255, 0.06);
+            --b1: rgba(255, 255, 255, 0.10);
+            --t: #e8edf5;
+            --ts: #8b9ec2;
+            --tm: #4e6388;
+            --ac: #14b8a6;
+            --ab: #3b82f6;
+            --ap: #8b5cf6;
+            --aa: #f59e0b;
+            --ar: #ef4444;
+            --gu: linear-gradient(135deg, #3b82f6, #6366f1);
+            --gs: linear-gradient(135deg, #14b8a6, #3b82f6);
+            --gbg: linear-gradient(145deg, #062a2e 0%, #0a1628 40%, #0d1f3c 100%);
+            --gland: linear-gradient(160deg, #041a1e 0%, #081422 45%, #0d1838 100%);
+            --r1: 8px;
+            --r2: 12px;
+            --r3: 16px;
+            --r4: 20px;
+            --rp: 50px;
+            --sw: 300px;
+        }
+
+        html {
+            font-size: 16px
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gbg);
+            color: var(--t);
+            min-height: 100vh;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none
+        }
+
+        input,
+        select,
+        textarea {
+            font-family: inherit
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.09);
+            border-radius: 3px
+        }
+
+        /* SCREENS */
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: relative
+        }
+
+        .screen.active {
+            display: flex
+        }
+
+        /* ── LOGIN ── */
+        #loginScreen {
+            background: var(--gland);
+            align-items: center;
+            justify-content: center;
+            overflow: hidden
+        }
+
+        .ptcl {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .pt {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(20, 184, 166, 0.07);
+            animation: floatup linear infinite
+        }
+
+        @keyframes floatup {
+            0% {
+                transform: translateY(105vh) scale(0);
+                opacity: 0
+            }
+
+            10% {
+                opacity: 1
+            }
+
+            90% {
+                opacity: 1
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0
+            }
+        }
+
+        .lcard {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--r4);
+            padding: 44px 40px;
+            width: 430px;
+            max-width: 93vw;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(20, 184, 166, 0.06);
+            animation: scaleIn .5s ease both
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(.92) translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        .lbrand {
+            text-align: center;
+            margin-bottom: 32px
+        }
+
+        .llogo {
+            width: 64px;
+            height: 64px;
+            background: var(--gs);
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 14px;
+            box-shadow: 0 6px 24px rgba(20, 184, 166, 0.25)
+        }
+
+        .lbrand h1 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -.03em;
+            margin-bottom: 4px
+        }
+
+        .lbrand .tag {
+            font-size: .76rem;
+            color: var(--ts);
+            letter-spacing: .04em
+        }
+
+        .fgrp {
+            margin-bottom: 14px
+        }
+
+        .fgrp label {
+            display: block;
+            font-size: .68rem;
+            font-weight: 600;
+            color: var(--ts);
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            margin-bottom: 5px
+        }
+
+        .fi {
+            width: 100%;
+            padding: 11px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: var(--r2);
+            color: var(--t);
+            font-size: .86rem;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s
+        }
+
+        .fi:focus {
+            border-color: rgba(20, 184, 166, .4);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, .07)
+        }
+
+        .fi::placeholder {
+            color: var(--tm)
+        }
+
+        .frow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        select.fi {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%238b9ec2' d='M5 7L0 2h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 13px center;
+            cursor: pointer
+        }
+
+        select.fi option {
+            background: #0d1f3c
+        }
+
+        .cbtn {
+            width: 100%;
+            padding: 13px;
+            background: var(--gs);
+            color: #fff;
+            font-size: .9rem;
+            font-weight: 600;
+            border-radius: var(--r2);
+            margin-top: 6px;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 16px rgba(20, 184, 166, .25)
+        }
+
+        .cbtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(20, 184, 166, .35)
+        }
+
+        /* ── LANGUAGE ── */
+        #langScreen {
+            background: var(--gland);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column
+        }
+
+        .langcard {
+            text-align: center;
+            animation: scaleIn .45s ease both;
+            padding: 20px
+        }
+
+        .langcard h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .langcard .lsub {
+            color: var(--ts);
+            font-size: .85rem;
+            margin-bottom: 28px
+        }
+
+        .langopts {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .lbtn {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--r3);
+            padding: 22px 34px;
+            color: var(--t);
+            font-size: .88rem;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 9px;
+            transition: all .3s;
+            min-width: 130px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .25)
+        }
+
+        .lbtn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .35)
+        }
+
+        .lbtn .em {
+            font-size: 2rem
+        }
+
+        .lbtn .nat {
+            font-size: .68rem;
+            color: var(--tm)
+        }
+
+        /* ── APP LAYOUT ── */
+        #appScreen {
+            flex-direction: row;
+            background: var(--gbg)
+        }
+
+        .sidebar {
+            width: var(--sw);
+            background: rgba(10, 22, 40, .78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 14px;
+            flex-shrink: 0;
+            z-index: 10;
+            transition: transform .35s;
+            overflow-y: auto
+        }
+
+        .sbrand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 4px;
+            margin-bottom: 20px
+        }
+
+        .slogo {
+            width: 38px;
+            height: 38px;
+            background: var(--gs);
+            border-radius: var(--r2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 12px rgba(20, 184, 166, .2)
+        }
+
+        .stitle {
+            font-size: .92rem;
+            font-weight: 700;
+            letter-spacing: -.02em;
+            line-height: 1.2
+        }
+
+        .stitle small {
+            display: block;
+            font-size: .62rem;
+            font-weight: 400;
+            color: var(--tm);
+            margin-top: 2px
+        }
+
+        .sprofile {
+            background: var(--g0);
+            border: 1px solid var(--g1);
+            border-radius: var(--r2);
+            padding: 12px;
+            margin-bottom: 14px
+        }
+
+        .spname {
+            font-weight: 600;
+            font-size: .82rem;
+            margin-bottom: 3px
+        }
+
+        .spdet {
+            font-size: .68rem;
+            color: var(--tm);
+            line-height: 1.5
+        }
+
+        .splang {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            margin-top: 6px;
+            background: rgba(20, 184, 166, .1);
+            border: 1px solid rgba(20, 184, 166, .15);
+            border-radius: var(--rp);
+            font-size: .63rem;
+            color: #5eead4;
+            font-weight: 600
+        }
+
+        .ncbtn {
+            width: 100%;
+            padding: 10px;
+            background: var(--g0);
+            border: 1px solid var(--g1);
+            border-radius: var(--r2);
+            color: var(--t);
+            font-size: .8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            transition: all .2s;
+            margin-bottom: 14px
+        }
+
+        .ncbtn:hover {
+            background: var(--g2);
+            border-color: rgba(255, 255, 255, 0.14)
+        }
+
+        /* history section in sidebar */
+        .sb-section-title {
+            font-size: .65rem;
+            font-weight: 600;
+            color: var(--tm);
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            padding: 0 4px;
+            margin-bottom: 6px;
+            margin-top: 2px
+        }
+
+        .hist-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 8px
+        }
+
+        .hist-item {
+            padding: 9px 10px;
+            background: var(--g0);
+            border: 1px solid transparent;
+            border-radius: var(--r1);
+            font-size: .73rem;
+            color: var(--ts);
+            cursor: pointer;
+            transition: all .2s;
+            line-height: 1.35
+        }
+
+        .hist-item:hover {
+            background: var(--g1);
+            border-color: var(--g1);
+            color: var(--t)
+        }
+
+        .hist-item .hi-time {
+            font-size: .62rem;
+            color: var(--tm);
+            margin-top: 2px
+        }
+
+        .hist-empty {
+            font-size: .72rem;
+            color: var(--tm);
+            text-align: center;
+            padding: 10px 0;
+            font-style: italic
+        }
+
+        .snav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-bottom: 8px
+        }
+
+        .nitem {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 11px;
+            border-radius: var(--r2);
+            font-size: .8rem;
+            font-weight: 500;
+            color: var(--ts);
+            cursor: pointer;
+            transition: all .2s;
+            border: 1px solid transparent
+        }
+
+        .nitem:hover {
+            background: var(--g0);
+            color: var(--t)
+        }
+
+        .nitem.active {
+            background: var(--g2);
+            color: var(--t);
+            border-color: var(--g1)
+        }
+
+        .nic {
+            font-size: .95rem;
+            width: 20px;
+            text-align: center
+        }
+
+        .sfooter {
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: auto
+        }
+
+        .logobtn {
+            width: 100%;
+            padding: 8px;
+            background: rgba(239, 68, 68, .08);
+            border: 1px solid rgba(239, 68, 68, .15);
+            border-radius: var(--r2);
+            color: #fca5a5;
+            font-size: .76rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all .2s;
+            margin-bottom: 10px
+        }
+
+        .logobtn:hover {
+            background: rgba(239, 68, 68, .15)
+        }
+
+        .sfooter p {
+            font-size: .63rem;
+            color: var(--tm);
+            text-align: center;
+            line-height: 1.5
+        }
+
+        /* mobile header */
+        .mobh {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 52px;
+            background: rgba(10, 22, 40, .93);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            z-index: 20;
+            align-items: center;
+            padding: 0 13px;
+            gap: 10px
+        }
+
+        .hmbg {
+            color: var(--t);
+            font-size: 1.25rem;
+            padding: 4px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--r1);
+            transition: background .2s
+        }
+
+        .hmbg:hover {
+            background: var(--g0)
+        }
+
+        .mobt {
+            font-size: .88rem;
+            font-weight: 600
+        }
+
+        .sbov {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            z-index: 9
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            position: relative
+        }
+
+        /* SYMPTOM CHECKER PANEL */
+        .sc-panel {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            background: var(--gbg);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeUp .35s ease both
+        }
+
+        .sc-panel.open {
+            display: flex
+        }
+
+        .sc-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--r4);
+            padding: 36px 32px;
+            width: 520px;
+            max-width: 95vw;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, .35)
+        }
+
+        .sc-card h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .sc-card .scdesc {
+            font-size: .82rem;
+            color: var(--ts);
+            margin-bottom: 22px;
+            line-height: 1.55
+        }
+
+        .sc-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px
+        }
+
+        .sc-ex {
+            padding: 5px 11px;
+            background: var(--g0);
+            border: 1px solid var(--g1);
+            border-radius: var(--rp);
+            font-size: .72rem;
+            color: var(--ts);
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .sc-ex:hover {
+            background: var(--g1);
+            color: var(--t)
+        }
+
+        .sc-ta {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--r2);
+            color: var(--t);
+            font-size: .86rem;
+            resize: vertical;
+            min-height: 90px;
+            outline: none;
+            transition: border-color .2s
+        }
+
+        .sc-ta:focus {
+            border-color: rgba(20, 184, 166, .38)
+        }
+
+        .sc-ta::placeholder {
+            color: var(--tm)
+        }
+
+        .sc-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px
+        }
+
+        .sc-submit {
+            flex: 1;
+            padding: 12px;
+            background: var(--gs);
+            color: #fff;
+            font-size: .88rem;
+            font-weight: 600;
+            border-radius: var(--r2);
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 3px 14px rgba(20, 184, 166, .22)
+        }
+
+        .sc-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 22px rgba(20, 184, 166, .32)
+        }
+
+        .sc-cancel {
+            padding: 12px 18px;
+            background: var(--g0);
+            border: 1px solid var(--g1);
+            border-radius: var(--r2);
+            color: var(--ts);
+            font-size: .88rem;
+            transition: all .2s
+        }
+
+        .sc-cancel:hover {
+            background: var(--g1);
+            color: var(--t)
+        }
+
+        /* VACCINE PANEL */
+        .vax-panel {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            background: var(--gbg);
+            flex-direction: column;
+            padding: 0;
+            animation: fadeUp .35s ease both;
+            overflow-y: auto
+        }
+
+        .vax-panel.open {
+            display: flex
+        }
+
+        .vax-header {
+            padding: 24px 28px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto
+        }
+
+        .vax-header h2 {
+            font-size: 1.15rem;
+            font-weight: 700
+        }
+
+        .vax-close {
+            padding: 8px 16px;
+            background: var(--g0);
+            border: 1px solid var(--g1);
+            border-radius: var(--r2);
+            color: var(--ts);
+            font-size: .8rem;
+            transition: all .2s
+        }
+
+        .vax-close:hover {
+            background: var(--g1);
+            color: var(--t)
+        }
+
+        .vax-age-form {
+            padding: 16px 28px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto
+        }
+
+        .vax-age-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end
+        }
+
+        .vax-age-row input {
+            width: 100px;
+            padding: 10px 13px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: var(--r2);
+            color: var(--t);
+            font-size: .86rem;
+            outline: none;
+            transition: border-color .2s
+        }
+
+        .vax-age-row input:focus {
+            border-color: rgba(20, 184, 166, .38)
+        }
+
+        .vax-age-row select {
+            padding: 10px 13px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: var(--r2);
+            color: var(--t);
+            font-size: .85rem;
+            outline: none;
+            appearance: none;
+            cursor: pointer
+        }
+
+        .vax-age-row select option {
+            background: #0d1f3c
+        }
+
+        .vax-age-btn {
+            padding: 10px 18px;
+            background: var(--gs);
+            color: #fff;
+            font-size: .85rem;
+            font-weight: 600;
+            border-radius: var(--r2);
+            transition: transform .2s;
+            box-shadow: 0 3px 12px rgba(20, 184, 166, .2)
+        }
+
+        .vax-age-btn:hover {
+            transform: translateY(-1px)
+        }
+
+        .vax-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            padding: 16px 28px 28px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto
+        }
+
+        .vcard {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: var(--r3);
+            padding: 18px;
+            transition: all .25s
+        }
+
+        .vcard:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(20, 184, 166, .2);
+            transform: translateY(-2px)
+        }
+
+        .vcard-icon {
+            font-size: 1.6rem;
+            margin-bottom: 10px
+        }
+
+        .vcard-name {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: 4px
+        }
+
+        .vcard-prevents {
+            font-size: .74rem;
+            color: var(--ts);
+            margin-bottom: 6px
+        }
+
+        .vcard-age {
+            display: inline-block;
+            padding: 3px 9px;
+            background: rgba(20, 184, 166, .1);
+            border: 1px solid rgba(20, 184, 166, .15);
+            border-radius: var(--rp);
+            font-size: .65rem;
+            color: #5eead4;
+            font-weight: 600;
+            margin-bottom: 8px
+        }
+
+        .vcard-note {
+            font-size: .72rem;
+            color: var(--tm);
+            line-height: 1.45
+        }
+
+        .vax-disc {
+            margin: 0 28px 24px;
+            padding: 12px 16px;
+            background: rgba(245, 158, 11, .07);
+            border: 1px solid rgba(245, 158, 11, .15);
+            border-radius: var(--r2);
+            font-size: .76rem;
+            color: #fbbf24;
+            line-height: 1.5;
+            max-width: 900px;
+            width: calc(100% - 56px)
+        }
+
+        /* CHAT AREA */
+        .chat-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 18px;
+            padding-bottom: 90px;
+            scroll-behavior: smooth
+        }
+
+        .msgs {
+            max-width: 740px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px
+        }
+
+        /* WELCOME */
+        .welcome {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 44px 16px;
+            animation: fadeUp .5s ease both
+        }
+
+        .wicon {
+            width: 68px;
+            height: 68px;
+            background: var(--gs);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 26px rgba(20, 184, 166, .18)
+        }
+
+        .welcome h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -.02em
+        }
+
+        .welcome p {
+            color: var(--ts);
+            font-size: .86rem;
+            max-width: 400px;
+            line-height: 1.6;
+            margin-bottom: 24px
+        }
+
+        .qas {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .qa {
+            background: var(--g0);
+            border: 1px solid var(--g1);
+            border-radius: var(--r3);
+            padding: 11px 16px;
+            color: var(--ts);
+            font-size: .78rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all .2s
+        }
+
+        .qa:hover {
+            background: var(--g2);
+            color: var(--t);
+            border-color: rgba(255, 255, 255, 0.13);
+            transform: translateY(-2px)
+        }
+
+        /* BUBBLES */
+        .mrow {
+            display: flex;
+            animation: fadeUp .3s ease both
+        }
+
+        .mrow.u {
+            justify-content: flex-end
+        }
+
+        .mrow.a {
+            justify-content: flex-start
+        }
+
+        .mbub {
+            max-width: 82%;
+            padding: 12px 16px;
+            border-radius: var(--r3);
+            font-size: .85rem;
+            line-height: 1.65;
+            word-wrap: break-word
+        }
+
+        .mrow.u .mbub {
+            background: var(--gu);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, .18)
+        }
+
+        .mrow.a .mbub {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--t);
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .25)
+        }
+
+        .mtime {
+            font-size: .6rem;
+            color: var(--tm);
+            margin-top: 5px;
+            opacity: .7
+        }
+
+        .mrow.u .mtime {
+            text-align: right;
+            color: rgba(255, 255, 255, .4)
+        }
+
+        .aav {
+            width: 28px;
+            height: 28px;
+            background: var(--gs);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            margin-right: 8px;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: var(--rp);
+            font-size: .6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin-bottom: 8px
+        }
+
+        .bd {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            display: inline-block
+        }
+
+        .bml {
+            background: rgba(139, 92, 246, .12);
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, .22)
+        }
+
+        .bml .bd {
+            background: #8b5cf6
+        }
+
+        .bllm {
+            background: rgba(59, 130, 246, .12);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, .22)
+        }
+
+        .bllm .bd {
+            background: #3b82f6
+        }
+
+        .bclf {
+            background: rgba(245, 158, 11, .12);
+            color: #fcd34d;
+            border: 1px solid rgba(245, 158, 11, .22)
+        }
+
+        .bclf .bd {
+            background: #f59e0b
+        }
+
+        .berr {
+            background: rgba(239, 68, 68, .1);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, .2)
+        }
+
+        .berr .bd {
+            background: #ef4444
+        }
+
+        /* ML PREDICTION */
+        .mld {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 10px
+        }
+
+        .mlcw {
+            margin-bottom: 10px
+        }
+
+        .mlcl {
+            font-size: .7rem;
+            color: var(--ts);
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between
+        }
+
+        .mlcv {
+            font-weight: 700;
+            font-size: .8rem;
+            color: var(--t)
+        }
+
+        .mltr {
+            height: 7px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .mlf {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            transition: width 1s ease;
+            width: 0%
+        }
+
+        .mlm {
+            color: var(--ts);
+            font-size: .81rem;
+            line-height: 1.6
+        }
+
+        .mldisc {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: rgba(245, 158, 11, .06);
+            border: 1px solid rgba(245, 158, 11, .12);
+            border-radius: var(--r1);
+            font-size: .69rem;
+            color: #fbbf24;
+            line-height: 1.45
+        }
+
+        .errbox {
+            background: rgba(239, 68, 68, .08);
+            border: 1px solid rgba(239, 68, 68, .2);
+            border-radius: var(--r2);
+            padding: 11px 13px;
+            color: #fca5a5;
+            font-size: .81rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px
+        }
+
+        /* VACCINE CHAT PANEL */
+        .vchat-panel {
+            margin-top: 12px;
+            background: rgba(20, 184, 166, .05);
+            border: 1px solid rgba(20, 184, 166, .12);
+            border-radius: var(--r2);
+            padding: 13px 15px
+        }
+
+        .vchat-title {
+            font-size: .76rem;
+            font-weight: 600;
+            color: #5eead4;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 5px
+        }
+
+        .vchips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 9px
+        }
+
+        .vchip {
+            padding: 4px 10px;
+            background: rgba(20, 184, 166, .1);
+            border: 1px solid rgba(20, 184, 166, .17);
+            border-radius: var(--rp);
+            font-size: .69rem;
+            color: #99f6e4;
+            font-weight: 500
+        }
+
+        .vcdisc {
+            font-size: .64rem;
+            color: var(--tm);
+            font-style: italic;
+            line-height: 1.4
+        }
+
+        /* TYPING */
+        .trow {
+            display: flex;
+            justify-content: flex-start;
+            animation: fadeUp .3s ease both
+        }
+
+        .tbub {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--r3);
+            border-bottom-left-radius: 4px;
+            padding: 13px 18px;
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .td {
+            width: 6px;
+            height: 6px;
+            background: var(--tm);
+            border-radius: 50%;
+            animation: bnc 1.4s infinite ease-in-out
+        }
+
+        .td:nth-child(2) {
+            animation-delay: .16s
+        }
+
+        .td:nth-child(3) {
+            animation-delay: .32s
+        }
+
+        @keyframes bnc {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: .35
+            }
+
+            30% {
+                transform: translateY(-5px);
+                opacity: 1
+            }
+        }
+
+        /* INPUT BAR */
+        .ibar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 13px 18px;
+            z-index: 5;
+            background: linear-gradient(to top, var(--bg) 60%, transparent)
+        }
+
+        .iwrap {
+            max-width: 740px;
+            margin: 0 auto;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--rp);
+            padding: 5px 5px 5px 17px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color .2s
+        }
+
+        .iwrap:focus-within {
+            border-color: rgba(20, 184, 166, .3);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, .05)
+        }
+
+        #ci {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--t);
+            font-size: .85rem;
+            min-width: 0
+        }
+
+        #ci::placeholder {
+            color: var(--tm)
+        }
+
+        #sb {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--gs);
+            color: #fff;
+            font-size: .95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .2s;
+            box-shadow: 0 2px 10px rgba(20, 184, 166, .18)
+        }
+
+        #sb:hover:not(:disabled) {
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(20, 184, 166, .3)
+        }
+
+        #sb:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+            transform: none
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                transform: translateX(-100%);
+                z-index: 30;
+                width: 275px
+            }
+
+            .sidebar.open {
+                transform: translateX(0)
+            }
+
+            .sbov.vis {
+                display: block;
+                z-index: 25
+            }
+
+            .mobh {
+                display: flex
+            }
+
+            .main {
+                padding-top: 52px
+            }
+
+            .chat-area {
+                padding: 12px 9px;
+                padding-bottom: 82px
+            }
+
+            .ibar {
+                padding: 10px 9px
+            }
+
+            .mbub {
+                max-width: 91%;
+                font-size: .83rem
+            }
+
+            .welcome {
+                padding: 20px 12px
+            }
+
+            .welcome h2 {
+                font-size: 1.1rem
+            }
+
+            .wicon {
+                width: 56px;
+                height: 56px;
+                font-size: 26px
+            }
+
+            .qas {
+                flex-direction: column;
+                align-items: stretch
+            }
+
+            .qa {
+                justify-content: center
+            }
+
+            .lcard {
+                padding: 30px 22px
+            }
+
+            .frow {
+                grid-template-columns: 1fr
+            }
+
+            .langopts {
+                flex-direction: column;
+                align-items: center
+            }
+
+            .lbtn {
+                min-width: 200px
+            }
+
+            .sc-card {
+                padding: 26px 20px
+            }
+
+            .vax-grid {
+                grid-template-columns: 1fr 1fr;
+                padding: 12px 16px 20px
+            }
+
+            .vax-header,
+            .vax-age-form {
+                padding-left: 16px;
+                padding-right: 16px
+            }
+
+            .vax-disc {
+                margin: 0 16px 20px;
+                width: calc(100% - 32px)
+            }
+        }
+
+        @media(max-width:480px) {
+            .vax-grid {
+                grid-template-columns: 1fr
+            }
+
+            .vax-age-row {
+                flex-wrap: wrap
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── SCREEN 1: LOGIN ── -->
+    <div class="screen" id="loginScreen">
+        <div class="ptcl" id="ptcl"></div>
+        <div class="lcard">
+            <div class="lbrand">
+                <div class="llogo">🩺</div>
+                <h1>AI Health Assistant</h1>
+                <p class="tag">Smart. Safe. Preventive Healthcare.</p>
+            </div>
+            <form id="lform" autocomplete="off">
+                <div class="fgrp"><label for="un">Full Name</label><input type="text" id="un" class="fi"
+                        placeholder="Your full name" required /></div>
+                <div class="frow">
+                    <div class="fgrp"><label for="ua">Age</label><input type="number" id="ua" class="fi"
+                            placeholder="Age" min="1" max="120" required /></div>
+                    <div class="fgrp"><label for="ug">Gender</label><select id="ug" class="fi" required>
+                            <option value="" disabled selected>Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select></div>
+                </div>
+                <div class="fgrp"><label for="ul">Location</label><input type="text" id="ul" class="fi"
+                        placeholder="City / District" required /></div>
+                <button type="submit" class="cbtn">Continue →</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ── SCREEN 2: LANGUAGE ── -->
+    <div class="screen" id="langScreen">
+        <div class="langcard">
+            <h2>Choose Your Language</h2>
+            <p class="lsub">Select the language for AI responses</p>
+            <div class="langopts">
+                <button class="lbtn" data-lang="English"><span class="em">🇬🇧</span>English<span
+                        class="nat">English</span></button>
+                <button class="lbtn" data-lang="Tamil"><span class="em">🇮🇳</span>Tamil<span
+                        class="nat">தமிழ்</span></button>
+                <button class="lbtn" data-lang="Hindi"><span class="em">🇮🇳</span>Hindi<span
+                        class="nat">हिन्दी</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SCREEN 3: APP ── -->
+    <div class="screen" id="appScreen">
+        <header class="mobh" id="mobh"><button class="hmbg" id="hmbg">☰</button><span class="mobt">AI Health
+                Assistant</span></header>
+        <div class="sbov" id="sbov"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sbrand">
+                <div class="slogo">🩺</div>
+                <div class="stitle">AI Health Assistant<small>Powered by ML &amp; AI</small></div>
+            </div>
+            <div class="sprofile" id="spro">
+                <div class="spname" id="spname"></div>
+                <div class="spdet" id="spdet"></div>
+                <div class="splang" id="splang"></div>
+            </div>
+            <button class="ncbtn" id="ncbtn">✦ New Conversation</button>
+            <div class="sb-section-title">Navigation</div>
+            <nav class="snav">
+                <div class="nitem active" id="navChat"><span class="nic">💬</span>Chat Console</div>
+                <div class="nitem" id="navSC"><span class="nic">🔬</span>Symptom Checker</div>
+                <div class="nitem" id="navVax"><span class="nic">💉</span>Vaccine Tracker</div>
+            </nav>
+            <div class="sb-section-title" style="margin-top:10px">History</div>
+            <div class="hist-list" id="histList"></div>
+            <div class="sfooter">
+                <button class="logobtn" id="logoutBtn">⏻ Logout</button>
+                <p>AI Health Assistant v3.0<br />© 2026 — Final Year Project</p>
+            </div>
+        </aside>
+
+        <main class="main">
+            <!-- SYMPTOM CHECKER PANEL -->
+            <div class="sc-panel" id="scPanel">
+                <div class="sc-card">
+                    <h2>🔬 Symptom Checker</h2>
+                    <p class="scdesc">Describe your symptoms below. Our AI will analyze them and provide guidance. For
+                        emergencies, call your local helpline immediately.</p>
+                    <div class="sc-examples">
+                        <button class="sc-ex" data-sym="fever, headache, body ache">Fever &amp; Headache</button>
+                        <button class="sc-ex" data-sym="cough, cold, sore throat">Cough &amp; Cold</button>
+                        <button class="sc-ex" data-sym="stomach pain, vomiting, diarrhea">Stomach Issues</button>
+                        <button class="sc-ex" data-sym="chest pain, shortness of breath">Chest Pain</button>
+                        <button class="sc-ex" data-sym="rash, itching, skin irritation">Skin Problems</button>
+                    </div>
+                    <textarea id="scInput" class="sc-ta"
+                        placeholder="e.g. I have fever since 2 days, body ache and mild headache..."></textarea>
+                    <div class="sc-actions">
+                        <button class="sc-submit" id="scSubmit">Analyze Symptoms →</button>
+                        <button class="sc-cancel" id="scCancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VACCINE TRACKER PANEL -->
+            <div class="vax-panel" id="vaxPanel">
+                <div class="vax-header">
+                    <h2>💉 Vaccine Tracker</h2>
+                    <button class="vax-close" id="vaxClose">← Back to Chat</button>
+                </div>
+                <div class="vax-age-form">
+                    <p style="font-size:.8rem;color:var(--ts);margin-bottom:10px">Enter child age to see recommended
+                        vaccines:</p>
+                    <div class="vax-age-row">
+                        <input type="number" id="vaxAgeVal" placeholder="e.g. 6" min="0" max="18" />
+                        <select id="vaxAgeUnit">
+                            <option value="weeks">Weeks</option>
+                            <option value="months" selected>Months</option>
+                            <option value="years">Years</option>
+                        </select>
+                        <button class="vax-age-btn" id="vaxFilter">Show Vaccines</button>
+                    </div>
+                </div>
+                <div class="vax-grid" id="vaxGrid"></div>
+                <div class="vax-disc">⚕️ <strong>Educational Information Only:</strong> These are general vaccine
+                    recommendations. For an accurate, personalized schedule, please consult your pediatrician or nearest
+                    healthcare center.</div>
+            </div>
+
+            <!-- CHAT -->
+            <div class="chat-area" id="chatArea">
+                <div class="msgs" id="msgs">
+                    <div class="welcome" id="welcome">
+                        <div class="wicon">🤖</div>
+                        <h2 id="wtitle">Hello! I'm your AI Health Assistant</h2>
+                        <p>I can analyze symptoms, track vaccines, and answer health questions. How can I help you
+                            today?</p>
+                        <div class="qas">
+                            <button class="qa"
+                                data-q="I have fever, headache and body ache since 2 days"><span>🤒</span>Symptom
+                                Check</button>
+                            <button class="qa"
+                                data-q="My baby is 10 weeks old, what vaccines are due?"><span>💉</span>Vaccine
+                                Info</button>
+                            <button class="qa" data-q="What is diabetes and how to prevent it?"><span>📖</span>Health
+                                Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ibar">
+                <div class="iwrap"><input type="text" id="ci"
+                        placeholder="Ask a health question or describe your symptoms..." autocomplete="off" /><button
+                        id="sb">➤</button></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+            /* ── CONFIG ── */
+            const API = 'https://memory-designation-bug-pine.trycloudflare.com/chat';
+            const LS = { USER: 'aha_user', LANG: 'aha_lang', HIST: 'aha_hist' };
+
+            /* ── VACCINE DATABASE ── */
+            const VAXDB = [
+                { icon: '🛡️', name: 'BCG', prevents: 'Tuberculosis (TB)', ageRange: 'At birth', minW: 0, maxW: 4, note: 'Critical first vaccine. Protects against severe TB in infants.' },
+                { icon: '💧', name: 'OPV', prevents: 'Poliomyelitis (Polio)', ageRange: 'Birth, 6, 10, 14 weeks', minW: 0, maxW: 104, note: 'Oral drops preventing polio paralysis. Multiple doses required.' },
+                { icon: '🔰', name: 'DPT', prevents: 'Diphtheria, Pertussis, Tetanus', ageRange: '6, 10, 14 weeks + booster', minW: 6, maxW: 260, note: 'Three-in-one vaccine against killer diseases.' },
+                { icon: '🩸', name: 'Hepatitis B', prevents: 'Hepatitis B liver disease', ageRange: 'Birth, 6, 10, 14 weeks', minW: 0, maxW: 52, note: 'Prevents chronic liver disease and liver cancer.' },
+                { icon: '⭐', name: 'Measles / MMR', prevents: 'Measles, Mumps, Rubella', ageRange: '9–12 months', minW: 36, maxW: 78, note: 'Prevents highly contagious measles and complications.' },
+                { icon: '🌀', name: 'Rotavirus', prevents: 'Severe diarrhea', ageRange: '6 and 10 weeks', minW: 6, maxW: 16, note: 'Reduces infant hospitalization from diarrhea significantly.' },
+                { icon: '🫁', name: 'PCV (Pneumococcal)', prevents: 'Pneumonia, meningitis', ageRange: '6, 10, 14 weeks', minW: 6, maxW: 52, note: 'Protects against leading cause of child pneumonia.' },
+                { icon: '💉', name: 'IPV', prevents: 'Polio (injectable)', ageRange: '14 weeks', minW: 14, maxW: 52, note: 'Injectable form for stronger immunity against polio.' },
+                { icon: '🔶', name: 'Vitamin A', prevents: 'Vitamin A deficiency, blindness', ageRange: '9 months onwards', minW: 36, maxW: 260, note: 'Prevents blindness and boosts immune response.' },
+                { icon: '🧫', name: 'Typhoid', prevents: 'Typhoid fever', ageRange: '9–12 months', minW: 36, maxW: 520, note: 'Important in areas with poor sanitation.' },
+            ];
+            const VCHAT_KEYWORDS = ['baby', 'child', 'infant', 'toddler', 'newborn', 'weeks old', 'months old', 'years old', 'vaccine', 'vaccination', 'immuniz'];
+
+            /* ── DOM REFS ── */
+            const $ = id => document.getElementById(id);
+            const loginScreen = $('loginScreen'), langScreen = $('langScreen'), appScreen = $('appScreen');
+            const msgs = $('msgs'), chatArea = $('chatArea'), ci = $('ci'), sb = $('sb'), welcome = $('welcome');
+            const sidebar = $('sidebar'), sbov = $('sbov'), hmbg = $('hmbg');
+            const scPanel = $('scPanel'), vaxPanel = $('vaxPanel');
+            const histList = $('histList');
+
+            let waiting = false;
+            let currentConvId = null;
+            let currentConvMsgs = [];
+
+            /* ── UTILS ── */
+            function ts() { return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }
+            function tsFull() { return new Date().toISOString() }
+            function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML }
+            function scroll() { requestAnimationFrame(() => { chatArea.scrollTop = chatArea.scrollHeight }) }
+            function setWait(v) { waiting = v; sb.disabled = v; ci.disabled = v }
+            function getUser() { try { const d = localStorage.getItem(LS.USER); return d ? JSON.parse(d) : null } catch { return null } }
+            function getLang() { return localStorage.getItem(LS.LANG) || 'English' }
+
+            /* ── HISTORY ── */
+            function getHist() { try { const d = localStorage.getItem(LS.HIST); return d ? JSON.parse(d) : [] } catch { return [] } }
+            function saveHist(arr) { try { localStorage.setItem(LS.HIST, JSON.stringify(arr)) } catch { } }
+            function newConvId() { return 'conv_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) }
+            function startConv() { currentConvId = newConvId(); currentConvMsgs = []; return currentConvId }
+
+            function saveMessage(role, text, mode) {
+                if (!currentConvId) startConv();
+                currentConvMsgs.push({ role, text, mode: mode || null, time: tsFull() });
+                const hist = getHist();
+                const idx = hist.findIndex(h => h.id === currentConvId);
+                const entry = { id: currentConvId, title: currentConvMsgs.find(m => m.role === 'user')?.text?.slice(0, 48) || 'Chat', time: tsFull(), messages: currentConvMsgs };
+                if (idx >= 0) hist[idx] = entry; else hist.unshift(entry);
+                if (hist.length > 40) hist.splice(40);
+                saveHist(hist);
+                renderHistList();
+            }
+
+            function renderHistList() {
+                const hist = getHist();
+                histList.innerHTML = '';
+                if (!hist.length) { histList.innerHTML = '<div class="hist-empty">No history yet</div>'; return }
+                hist.slice(0, 15).forEach(h => {
+                    const d = document.createElement('div');
+                    d.className = 'hist-item';
+                    const dt = new Date(h.time);
+                    const rel = dt.toLocaleDateString([], { month: 'short', day: 'numeric' }) + ' ' + dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    d.innerHTML = `<div>${esc(h.title || 'Chat')}</div><div class="hi-time">${rel} · ${h.messages.length} msg${h.messages.length > 1 ? 's' : ''}</div>`;
+                    d.addEventListener('click', () => loadConv(h));
+                    histList.appendChild(d);
+                });
+            }
+
+            function loadConv(h) {
+                clearChat(false);
+                currentConvId = h.id;
+                currentConvMsgs = [...h.messages];
+                closeSB();
+                (h.messages || []).forEach(m => {
+                    if (m.role === 'user') appendUserBubble(m.text);
+                    else if (m.role === 'ai') appendRawBubble(m.text, m.mode);
+                });
+            }
+
+            /* ── SCREENS ── */
+            function show(screen) { [loginScreen, langScreen, appScreen].forEach(s => s.classList.remove('active')); screen.classList.add('active') }
+
+            function init() {
+                spawnParticles();
+                const user = getUser(), lang = getLang();
+                if (user && localStorage.getItem(LS.LANG)) {
+                    fillProfile(user, lang);
+                    show(appScreen);
+                    startConv();
+                    personalizeWelcome(user);
+                    renderHistList();
+                    ci.focus();
+                } else if (user) { show(langScreen) }
+                else { show(loginScreen) }
+            }
+
+            /* ── PARTICLES ── */
+            function spawnParticles() {
+                const c = $('ptcl'); if (!c) return;
+                for (let i = 0; i < 16; i++) {
+                    const p = document.createElement('div'); p.className = 'pt';
+                    const sz = Math.random() * 100 + 40;
+                    p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;animation-duration:${Math.random() * 10 + 12}s;animation-delay:${Math.random() * 8}s`;
+                    c.appendChild(p);
+                }
+            }
+
+            /* ── LOGIN ── */
+            $('lform').addEventListener('submit', e => {
+                e.preventDefault();
+                const name = $('un').value.trim(), age = $('ua').value, gender = $('ug').value, loc = $('ul').value.trim();
+                if (!name || !age || !gender || !loc) return;
+                localStorage.setItem(LS.USER, JSON.stringify({ name, age, gender, loc }));
+                show(langScreen);
+            });
+
+            /* ── LANGUAGE ── */
+            document.querySelectorAll('.lbtn').forEach(b => b.addEventListener('click', () => {
+                localStorage.setItem(LS.LANG, b.dataset.lang);
+                const u = getUser(); if (!u) return;
+                fillProfile(u, b.dataset.lang);
+                show(appScreen); startConv(); personalizeWelcome(u); renderHistList(); ci.focus();
+            }));
+
+            /* ── PROFILE ── */
+            function fillProfile(u, lang) {
+                $('spname').textContent = u.name || 'User';
+                $('spdet').textContent = `${u.age || '—'} yrs · ${u.gender || '—'} · ${u.loc || '—'}`;
+                $('splang').textContent = '🌐 ' + lang;
+            }
+            function personalizeWelcome(u) {
+                const el = $('wtitle'); if (el && u && u.name) el.textContent = `Hello, ${u.name}! 👋`
+            }
+
+            /* ── SIDEBAR ── */
+            function openSB() { sidebar.classList.add('open'); sbov.classList.add('vis') }
+            function closeSB() { sidebar.classList.remove('open'); sbov.classList.remove('vis') }
+            hmbg.addEventListener('click', openSB);
+            sbov.addEventListener('click', closeSB);
+
+            $('logoutBtn').addEventListener('click', () => { localStorage.removeItem(LS.USER); localStorage.removeItem(LS.LANG); location.reload() });
+
+            $('ncbtn').addEventListener('click', () => { clearChat(true); closeSB() });
+
+            /* ── NAV ── */
+            function setNavActive(id) { document.querySelectorAll('.nitem').forEach(n => n.classList.remove('active')); $(id).classList.add('active') }
+
+            $('navChat').addEventListener('click', () => { setNavActive('navChat'); scPanel.classList.remove('open'); vaxPanel.classList.remove('open'); closeSB() });
+            $('navSC').addEventListener('click', () => { setNavActive('navSC'); scPanel.classList.add('open'); vaxPanel.classList.remove('open'); closeSB() });
+            $('navVax').addEventListener('click', () => { setNavActive('navVax'); vaxPanel.classList.add('open'); scPanel.classList.remove('open'); renderVaxCards(null); closeSB() });
+
+            /* ── CHAT CONTROLS ── */
+            function clearChat(preserveHist) {
+                msgs.innerHTML = '';
+                const w = document.createElement('div'); w.className = 'welcome'; w.id = 'welcome';
+                w.innerHTML = `<div class="wicon">🤖</div><h2 id="wtitle">Hello! 👋</h2><p>Start a new conversation. Ask about symptoms, vaccines, or health topics.</p><div class="qas"><button class="qa" data-q="I have fever, headache and body ache since 2 days"><span>🤒</span>Symptom Check</button><button class="qa" data-q="My baby is 10 weeks old, what vaccines are due?"><span>💉</span>Vaccine Info</button><button class="qa" data-q="What is diabetes?"><span>📖</span>Health Info</button></div>`;
+                msgs.appendChild(w);
+                bindQuickActions();
+                startConv();
+                if (!preserveHist) renderHistList();
+            }
+
+            function hideWelcome() { const w = msgs.querySelector('.welcome'); if (w) w.style.display = 'none' }
+
+            /* ── QUICK ACTIONS ── */
+            function bindQuickActions() {
+                document.querySelectorAll('.qa').forEach(b => b.addEventListener('click', () => {
+                    const q = b.dataset.q; if (q) { ci.value = q; handleSend(); }
+                }));
+            }
+            bindQuickActions();
+
+            /* ── SYMPTOM CHECKER ── */
+            $('scCancel').addEventListener('click', () => { scPanel.classList.remove('open'); setNavActive('navChat') });
+            $('scSubmit').addEventListener('click', () => {
+                const sym = $('scInput').value.trim();
+                if (!sym) return;
+                scPanel.classList.remove('open'); setNavActive('navChat');
+                ci.value = 'My symptoms: ' + sym;
+                handleSend();
+                $('scInput').value = '';
+            });
+            document.querySelectorAll('.sc-ex').forEach(b => b.addEventListener('click', () => {
+                $('scInput').value = b.dataset.sym;
+            }));
+
+            /* ── VACCINE TRACKER ── */
+            $('vaxClose').addEventListener('click', () => { vaxPanel.classList.remove('open'); setNavActive('navChat') });
+            $('vaxFilter').addEventListener('click', () => {
+                const val = parseInt($('vaxAgeVal').value) || 0;
+                const unit = $('vaxAgeUnit').value;
+                let weeks = val;
+                if (unit === 'months') weeks = val * 4.33;
+                else if (unit === 'years') weeks = val * 52;
+                renderVaxCards(weeks);
+            });
+
+            function renderVaxCards(filterWeeks) {
+                const grid = $('vaxGrid'); grid.innerHTML = '';
+                const list = filterWeeks === null ? VAXDB : VAXDB.filter(v => filterWeeks >= v.minW && filterWeeks <= v.maxW + 26);
+                const show = list.length ? list : VAXDB;
+                show.forEach(v => {
+                    const c = document.createElement('div'); c.className = 'vcard';
+                    c.innerHTML = `<div class="vcard-icon">${v.icon}</div><div class="vcard-name">${esc(v.name)}</div><div class="vcard-prevents">Prevents: ${esc(v.prevents)}</div><span class="vcard-age">${esc(v.ageRange)}</span><div class="vcard-note">${esc(v.note)}</div>`;
+                    grid.appendChild(c);
+                });
+            }
+
+            /* ── BADGE HTML ── */
+            function badge(mode) {
+                const m = { ml_prediction: ['bml', 'ML Prediction'], llm_fallback: ['bllm', 'AI Health Guidance'], clarification: ['bclf', 'More Info Needed'], vaccine_tracking: ['bllm', 'AI Health Guidance'], error: ['berr', 'Error'] };
+                const b = m[mode] || m['llm_fallback'];
+                return `<div class="badge ${b[0]}"><span class="bd"></span>${b[1]}</div>`;
+            }
+
+            /* ── VACCINE CHAT INLINE PANEL ── */
+            function vchatPanel() {
+                const chips = VAXDB.slice(0, 6).map(v => `<span class="vchip">${esc(v.name)}</span>`).join('');
+                return `<div class="vchat-panel"><div class="vchat-title">💉 Common Vaccine Recommendations</div><div class="vchips">${chips}</div><div class="vcdisc">For exact schedule, consult a pediatrician. <a href="#" id="openVaxFull" style="color:#5eead4;text-decoration:none">View full tracker →</a></div></div>`;
+            }
+
+            /* ── RENDER AI BUBBLE ── */
+            function appendUserBubble(text) {
+                const r = document.createElement('div'); r.className = 'mrow u';
+                r.innerHTML = `<div class="mbub">${esc(text)}<div class="mtime">${ts()}</div></div>`;
+                msgs.appendChild(r); scroll();
+            }
+
+            function buildAIBody(resp, userText) {
+                const mode = resp.mode || 'error';
+                let body = '';
+                switch (mode) {
+                    case 'ml_prediction': {
+                        const dis = resp.disease;
+                        const conf = typeof resp.confidence === 'number' ? resp.confidence : null;
+                        const pct = conf !== null ? Math.round(conf * 100) : null;
+                        const msg = resp.message || '';
+                        if (dis) body += `<div class="mld">🧬 ${esc(dis)}</div>`;
+                        if (pct !== null) body += `<div class="mlcw"><div class="mlcl"><span>Confidence</span><span class="mlcv">${pct}%</span></div><div class="mltr"><div class="mlf" data-w="${pct}"></div></div></div>`;
+                        if (msg) body += `<div class="mlm">${esc(msg)}</div>`;
+                        body += `<div class="mldisc">⚕️ AI-based prediction. Please consult a medical professional for accurate diagnosis.</div>`;
+                        break;
+                    }
+                    case 'error':
+                        body = `<div class="errbox"><span>⚠️</span><span>${esc(resp.message || 'Something went wrong. Please try again.')}</span></div>`;
+                        break;
+                    default:
+                        body = `<div style="line-height:1.7;white-space:pre-wrap">${esc(resp.message || JSON.stringify(resp))}</div>`;
+                }
+                if (userText && VCHAT_KEYWORDS.some(k => userText.toLowerCase().includes(k))) body += vchatPanel();
+                return { mode, body };
+            }
+
+            function appendRawBubble(htmlBody, mode) {
+                const r = document.createElement('div'); r.className = 'mrow a';
+                r.innerHTML = `<div class="aav">🤖</div><div class="mbub">${badge(mode || 'llm_fallback')}${htmlBody}<div class="mtime">${ts()}</div></div>`;
+                msgs.appendChild(r); scroll();
+                r.querySelectorAll('.mlf').forEach(f => { requestAnimationFrame(() => { setTimeout(() => { f.style.width = f.dataset.w + '%' }, 80) }) });
+                const vlink = r.querySelector('#openVaxFull');
+                if (vlink) vlink.addEventListener('click', e => { e.preventDefault(); setNavActive('navVax'); vaxPanel.classList.add('open'); renderVaxCards(null) });
+            }
+
+            function appendAIBubble(resp, userText) {
+                const { mode, body } = buildAIBody(resp, userText);
+                appendRawBubble(body, mode);
+                saveMessage('ai', body, mode);
+            }
+
+            /* ── TYPING ── */
+            function showTyping() {
+                const r = document.createElement('div'); r.className = 'trow'; r.id = 'tind';
+                r.innerHTML = `<div class="aav">🤖</div><div class="tbub"><div class="td"></div><div class="td"></div><div class="td"></div></div>`;
+                msgs.appendChild(r); scroll();
+            }
+            function removeTyping() { const e = $('tind'); if (e) e.remove() }
+
+            /* ── SEND MESSAGE ── */
+            async function handleSend() {
+                const text = ci.value.trim(); if (!text || waiting) return;
+                ci.value = ''; hideWelcome();
+                if (!currentConvId) startConv();
+                appendUserBubble(text);
+                saveMessage('user', text, null);
+                setWait(true); showTyping();
+                const lang = getLang();
+                const prompt = lang !== 'English' ? `${text}\n\n[Respond in ${lang} language]` : text;
+                try {
+                    const res = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: prompt }) });
+                    removeTyping();
+                    if (!res.ok) { appendAIBubble({ mode: 'error', message: `Server error (${res.status}). Please try again.` }, text); setWait(false); return }
+                    let data;
+                    try { data = await res.json() } catch { appendAIBubble({ mode: 'error', message: 'Failed to parse server response.' }, text); setWait(false); return }
+                    appendAIBubble(data, text);
+                } catch { removeTyping(); appendAIBubble({ mode: 'error', message: 'Cannot reach the server. Check your network connection.' }, text) }
+                finally { setWait(false); ci.focus() }
+            }
+
+            sb.addEventListener('click', handleSend);
+            ci.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend() } });
+
+            /* ── BOOT ── */
+            init();
+        })();
+    </script>
+</body>
+
+</html>
